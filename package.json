@@ -26,7 +26,9 @@
     "start-server": "nodemon server.js -w server.js",
     "start": "npm-run-all -p watch-css start-js start-server",
     "build": "npm run build-css && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "only-test": "react-scripts test --env=jsdom",
+    "ensure-server": "node ./scripts/ensureServer.js",
+    "test": "npm-run-all -p only-test ensure-server",
     "test-without-watch": "cross-env CI=true npm test",
     "eject": "react-scripts eject",
     "lint": "prettier 'src/**/*.js' 'src/components/**/*.js' '*.js' --write --single-quote --no-semi && standard --fix",
@@ -43,7 +45,8 @@
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.0.2",
     "prettier": "^1.5.3",
-    "standard": "^10.0.2"
+    "standard": "^10.0.2",
+    "tcp-port-used": "^0.1.2"
   },
   "lint-staged": {
     "*.js": [
